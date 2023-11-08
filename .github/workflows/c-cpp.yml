@@ -9,7 +9,6 @@ jobs:
     steps:
       - name: Install ONNX Runtime
         uses: actions/setup-onnx@v1
-:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: |
