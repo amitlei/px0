@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+           Install ONNX Runtime and DirectML
+           winget install onnxruntime
+           winget install directml
+
+      - name: Build
+        run: |
+           Unzip the PX0 archive
+           unzip px0-v0.30.0-windows-onnx-dml.zip
+
+           Build the PX0 executable
+           cd px0
+           cmake .
+           make
+
+           Copy the executable to the bin directory
+           mkdir -p bin
+           cp px0.exe bin/
